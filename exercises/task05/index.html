@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset=utf-8>
+  <title>Task 05</title>  
+  <script src="quotes.js"></script>
+
+  <style type="text/css">
+    .hidden {
+        display: none;
+    }
+
+    .visible {
+        display: block;
+    }
+  </style>
+</head>
+<body>
+<h1>Hello World!</h1>
+
+
+<div id="loading" class="visible">
+    <h2>Loading</h2>
+</div>
+
+<div id="items" class="hidden">
+    <h2>Quotes</h2>
+    <ul id="quotes"></ul>
+
+    <h2>Morse</h2>
+    <ul id="morse"></ul>
+
+    <h2>Error Messages</h2>
+    <ul id="error_messages"></ul>
+</div>
+<script>
+
+    const range = Array.from({length: 4}, (x, i) => i)
+    const morsePromises = range.map(item => {
+        let toMorseString = `hello world ${item}`
+        return services.toMorse(toMorseString)
+    })
+    const quotePromises = range.map(item => {
+        return services.getQuotes()
+    })
+    quotePromises.forEach(item => {
+        item.then(success => {
+            getById("quotes").appendChild(createListItem(success))
+        })
+        .catch(error => {
+            getById("error_messages").appendChild(createListItem(`Quote Error: ${error}`))
+        })
+    })
+
+    morsePromises.forEach(item => {
+        item.then(success => {
+            getById("morse").appendChild(createListItem(success))    
+        })
+        .catch(error => {
+            getById("error_messages").appendChild(createListItem(`Morse Error: ${error}`))
+        })
+    })
+
+    Promise.all(
+        quotePromises.concat(morsePromises)
+            .map(item => item.catch(error => { return error }))
+    ).then(values => {
+        getById("loading").className = "hidden"
+        getById("items").className = "visible"
+    })
+    
+    const getById = (id) => document.getElementById(id)
+    const createListItem = (text) => {
+            const li = document.createElement("li")
+            li.appendChild(document.createTextNode(text))
+            return li
+    }
+</script>
+</body>
+</html>
