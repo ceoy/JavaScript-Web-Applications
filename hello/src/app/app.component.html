@@ -1,10 +1,22 @@
 <div class="container">
-    <h1>
-      {{title}}
-    </h1>
-    <a routerLink="/home" routerLinkActive="active-link">Home</a>
-    <a routerLink="/catalog" routerLinkActive="active-link">Catalog</a>
-    <a routerLink="/customer-details" routerLinkActive="active-link">Customer</a>
+  <h1>
+    {{title}}
+  </h1>
 
-    <router-outlet></router-outlet>
+  <nav class="navbar">
+    <div class="container">
+      <ul class="navbar-list">  
+        <li class="navbar-item">
+          <a class="navbar-link" routerLink="/home" routerLinkActive="active-link">Home</a>
+        </li>
+        <li class="navbar-item">
+          <a class="navbar-link" routerLink="/catalog" routerLinkActive="active-link">Catalog</a>
+        </li>
+        <li class="navbar-item" >
+          <a class="navbar-link" routerLink="/customer-details" routerLinkActive="active-link">Customer</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <router-outlet></router-outlet>
 </div>

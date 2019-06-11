@@ -1,7 +1,7 @@
 export class Book {
   constructor(
-    public isbn: String,
-    public author: string,
+    public isbn: string,
+    public authors: string,
     public title: string,
     public price: number,
     public publisher: string,
@@ -20,7 +20,7 @@ export class Book {
       " " +
       this.title +
       " " +
-      this.author +
+      this.authors +
       " " +
       this.publisher
     );

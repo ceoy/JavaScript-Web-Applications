@@ -1,3 +1,27 @@
-<p>
-  customer-details works!
-</p>
+
+<form (ngSubmit)="saveCustomer()">
+  <div class="row">
+    <label for="firstName">First Name</label>
+    <input class="u-full-width" id="firstName" name="firstName" type="text" [(ngModel)]="customer.firstName">
+    <label for="lastName">Last Name</label>
+    <input class="u-full-width" id="lastName" name="lastName" type="text" [(ngModel)]="customer.lastName">
+
+    <label for="email">Email</label>
+    <input class="u-full-width" id="email" name="email" type="email" [(ngModel)]="customer.email">
+
+    <select id="type" name="type" [(ngModel)]="customer.creditCard.type">
+      <option *ngFor="let type of creditCardTypes" [value]="type">{{type}}</option>
+    </select>
+
+    <label for="creditNumber">Credit Card Number</label>
+    <input type="text" name="creditNumber" id="number" [(ngModel)]="customer.creditCard.number">
+
+    <label for="expirationYear">Expiration Year</label>
+    <input type="text" name="expirationYear" id="expirationYear" type="number" [(ngModel)]="customer.creditCard.expirationYear">
+
+    <label for="expirationMonth">Expiration Month</label>
+    <input type="text" name="expirationMonth" id="expirationMonth" type="number" [(ngModel)]="customer.creditCard.expirationMonth">
+
+    <button type="submit">Save</button>
+  </div>
+</form>

@@ -22,7 +22,8 @@
             "styles": [
               "src/assets/normalize.css",
               "src/assets/skeleton.css",
-              "src/styles.css"
+              "src/styles.css",
+              "src/assets/custom.css"
             ],
             "scripts": [],
             "es5BrowserSupport": true

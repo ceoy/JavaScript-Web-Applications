@@ -12,9 +12,10 @@ export class BookDetailsComponent {
   constructor(private router: Router, private bookOrder: OrderService) {}
 
   public orderBook(): void {
-    this.bookOrder.orderBook(this.book);
+    this.bookOrder.orderedBook = this.book;
     this.router.navigateByUrl("/customer-details");
   }
+
   @Input()
   public book: Book;
 
